@@ -12,14 +12,28 @@ pipeline{
                 git branch: 'main', url:'https://github.com/htres736/spring-petclinic.git'
             }
         }
-        stage('Code Compile'){
-            steps{
-                catchError (buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh """
-                    echo "compile code"
-                    mvn compile
-                    echo "code compile complete"
-                """
+        stage('Parallel Block') {
+            Parallel{
+                stage('Code Validate'){
+                    steps{
+                    
+                        sh """
+                            echo "compile code"
+                            mvn validate
+                            echo "code compile complete"
+                        """
+                    }
+                }
+                stage('Code Compile'){
+                steps{
+                    
+                    sh """
+                        echo "compile code"
+                        mvn compile
+                        echo "code compile complete"
+                    """
+                    
+                    }
                 }
             }
         }
