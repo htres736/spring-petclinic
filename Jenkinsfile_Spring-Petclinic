@@ -1,0 +1,48 @@
+pipeline{
+    agent{
+        label 'master'
+    }
+    tools{
+        maven 'Maven 3.3.9'
+        jdk 'JDK 11'
+    }
+    stages{
+        stage('Checkout the code') {
+            steps{
+                git branch: 'main', url:'https://github.com/htres736/spring-petclinic.git'
+            }
+        }
+        stage('Code Compile'){
+            steps{
+                sh """
+                    echo "compile code"
+                    mvn compile
+                    echo "code compile complete"
+                """
+            }
+        }
+        stage('JUnit Test'){
+            steps{
+                sh """
+                    echo "unit test code"
+                    mvn test
+                    echo "unit tests complete"
+                """
+            }
+        }
+        stage ('Packaging'){
+            steps{
+                sh """
+                    echo "package code"
+                    mvn package
+                    echo "code packaging complete"
+                """
+            }
+        }
+    }
+    post{
+        always{
+            junit 'target/surefire-reports/**/*.xml'
+        }
+    }
+}
