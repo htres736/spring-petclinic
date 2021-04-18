@@ -14,29 +14,35 @@ pipeline{
         }
         stage('Code Compile'){
             steps{
+                catchError (buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh """
                     echo "compile code"
                     mvn compile
                     echo "code compile complete"
                 """
+                }
             }
         }
         stage('JUnit Test'){
             steps{
+                catchError (buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh """
                     echo "unit test code"
                     mvn test
                     echo "unit tests complete"
                 """
+                }
             }
         }
         stage ('Packaging'){
             steps{
+                catchError (buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh """
                     echo "package code"
                     mvn package
                     echo "code packaging complete"
                 """
+                }
             }
         }
     }
