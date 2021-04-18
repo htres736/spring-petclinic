@@ -40,13 +40,13 @@ pipeline{
         stage('JUnit Test'){
             when{ expression{returnenv.TESTVAR.contains('YES')}}
             steps{
-                catchError (buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                
                 sh """
                     echo "unit test code"
                     mvn test
                     echo "unit tests complete"
                 """
-                }
+                
             }
         }
         stage ('Packaging'){
