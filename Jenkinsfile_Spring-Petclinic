@@ -38,6 +38,7 @@ pipeline{
             }
         }
         stage('JUnit Test'){
+            when{ expression{returnenv.TESTVAR.contains('YES')}}
             steps{
                 catchError (buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh """
