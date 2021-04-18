@@ -13,7 +13,7 @@ pipeline{
             }
         }
         stage('Parallel Block') {
-            Parallel{
+            parallel{
                 stage('Code Validate'){
                     steps{
                     
@@ -25,15 +25,15 @@ pipeline{
                     }
                 }
                 stage('Code Compile'){
-                steps{
-                    
-                    sh """
-                        echo "compile code"
-                        mvn compile
-                        echo "code compile complete"
-                    """
-                    
-                    }
+                    steps{
+                        
+                        sh """
+                            echo "compile code"
+                            mvn compile
+                            echo "code compile complete"
+                        """
+                        
+                        }
                 }
             }
         }
