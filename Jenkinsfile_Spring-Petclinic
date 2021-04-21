@@ -72,7 +72,7 @@ pipeline{
             junit 'target/surefire-reports/**/*.xml'
         }
     }
-    failure {
+    //failure {
         //slackSend baseURL: <SLACK_URL>, channel: env.SLACK_NAME, message: "The build has failed"
-    }
+    //}
 }
