@@ -6,12 +6,18 @@ pipeline{
         maven 'Maven 3.3.9'
         jdk 'JDK 11'
     }
+    environment{
+        SLACK_NAME='#Demofrontend'
+        SLACK_URL='https://myslackurl.com'
+
+    }
+
     stages{
- /*       stage('Checkout the code') {
-            steps{
-                git branch: 'main', url:'https://github.com/htres736/spring-petclinic.git'
-            }
-*/        }
+        //stage('Checkout the code') {
+        //    steps{
+        //        git branch: 'main', url:'https://github.com/htres736/spring-petclinic.git'
+        //    }
+        //}
         stage('Parallel Block') {
             parallel{
                 stage('Code Validate'){
@@ -38,7 +44,7 @@ pipeline{
             }
         }
         stage('JUnit Test'){
-//            when{ expression{returnenv.TESTVAR.contains('YES')}}
+            //when{ expression{returnenv.TESTVAR.contains('YES')}}
             steps{
                 
                 sh """
@@ -65,5 +71,8 @@ pipeline{
         always{
             junit 'target/surefire-reports/**/*.xml'
         }
+    }
+    failure {
+        //slackSend baseURL: <SLACK_URL>, channel: env.SLACK_NAME, message: "The build has failed"
     }
 }
