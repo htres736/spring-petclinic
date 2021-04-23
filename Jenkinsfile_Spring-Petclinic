@@ -3,8 +3,8 @@ pipeline{
         label 'master'
     }
     tools{
-        maven 'Maven 3.3.9'
-        jdk 'JDK 11'
+        maven 'localMaven'
+        jdk 'localJDK'
     }
     environment{
         SLACK_NAME='#Demofrontend'
