@@ -1,6 +1,6 @@
 pipeline{
     agent{
-        label 'AWSNode1'
+        label 'AWSNode2'
     }
     tools{
         maven 'localMaven'
