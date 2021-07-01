@@ -20,7 +20,7 @@ pipeline{
         //}
         stage('Parallel Block') {
             parallel{
-                stage('Code Validate'){
+/*                stage('Code Validate'){
                     steps{
                     
                         sh """
@@ -29,7 +29,7 @@ pipeline{
                             echo "code compile complete"
                         """
                     }
-                }
+                }*/
                 stage('Code Compile'){
                     steps{
                         
