@@ -1,16 +1,17 @@
 pipeline{
     agent{
-        label 'master'
+        label 'AWSNode1'
     }
     tools{
         maven 'localMaven'
         jdk 'localJDK'
     }
-    environment{
+    /*environment{
         SLACK_NAME='#Demofrontend'
         SLACK_URL='https://myslackurl.com'
-    }
 
+    }
+*/
     stages{
         //stage('Checkout the code') {
         //    steps{
