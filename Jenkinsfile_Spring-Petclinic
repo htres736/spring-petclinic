@@ -4,8 +4,7 @@ pipeline{
     }
     tools{
         maven 'maven'
-        jdk 'JDK11'
-        ansible 'ansible'
+        jdk 'JDK11'        
     }
     /*environment{
         SLACK_NAME='#Demofrontend'
