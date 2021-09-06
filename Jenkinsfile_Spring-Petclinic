@@ -1,10 +1,11 @@
 pipeline{
     agent{
-        label 'AWSNode3'
+        any
     }
     tools{
-        maven 'localMaven'
-        jdk 'localJDK'
+        maven 'maven'
+        jdk 'JDK11'
+        ansible 'ansible'
     }
     /*environment{
         SLACK_NAME='#Demofrontend'
@@ -64,6 +65,12 @@ pipeline{
                     echo "code packaging complete"
                 """
                 }
+            }
+        }
+        stage ('Deploy'){
+            steps{
+                // Execute the ansible playbook to install tomcat, copy the .war file, and restart tomcat
+                ansiblePlaybook credentialsId: 'ansible-privatekey-ubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: 'AWS.inv', playbook: 'tomcatDeploy.yml'
             }
         }
     }
