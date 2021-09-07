@@ -12,8 +12,8 @@
     - name: Start web server
       service: name=tomcat9 state=started
     
-    - name: Copy .war file
-      copy: src=spring-petclinic.war dest=/usr/share/tomcat9-root/default_root/
+    - name: Copy .jar file to Tomcat server
+      copy: src=./target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar dest=/usr/share/tomcat9-root/default_root/
 
     - name: Restart tomcat
       service: name=tomcat9 state=restart
