@@ -67,7 +67,7 @@ pipeline{
         stage ('Deploy'){
             steps{
                 // Execute the ansible playbook to install tomcat, copy the .war file, and restart tomcat
-                ansiblePlaybook credentialsId: 'ansible-privatekey-ubuntu', disableHostKeyChecking: true, installation: 'ansible', inventory: 'AWS.inv', playbook: 'tomcatDeploy.yml'
+                ansiblePlaybook credentialsId: 'JenkinsAnsible', disableHostKeyChecking: true, installation: 'ansible', inventory: 'AWS.inv', playbook: 'tomcatDeploy.yml'
             }
         }
     }
