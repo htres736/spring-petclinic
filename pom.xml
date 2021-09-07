@@ -140,7 +140,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
       <scope>provided</scope>
-</dependency>
+    </dependency>
     <plugins>
       <plugin>
         <groupId>io.spring.javaformat</groupId>
